@@ -1,0 +1,43 @@
+# soccer_game.py
+
+import random
+
+# Define the players
+players = ["Player A", "Player B", "Player C", "Player D"]
+
+# Initialize player scores
+scores = {player: 0 for player in players}
+
+# Define the main game loop
+def main():
+    print("Welcome to the Soccer Game!")
+
+    while True:
+        print("\nNew Round")
+        play_round()
+        print("\nCurrent Scores:")
+        for player, score in scores.items():
+            print(f"{player}: {score}")
+
+        if max(scores.values()) >= 5:
+            winner = [player for player, score in scores.items() if score == max(scores.values())][0]
+            print(f"\n{winner} wins the game with {max(scores.values())} points!")
+            break
+
+# Define the logic for each round
+def play_round():
+    random.shuffle(players)
+    attacker = players[0]
+    defender = players[1]
+
+    print(f"\n{attacker} is attacking, and {defender} is defending!")
+
+    # Simulate a goal attempt
+    if random.random() > 0.5:
+        print(f"{attacker} scores a goal!")
+        scores[attacker] += 1
+    else:
+        print(f"{defender} blocks the shot!")
+
+if __name__ == "__main__":
+    main()
